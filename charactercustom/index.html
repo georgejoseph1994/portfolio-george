@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="en">
+    
+<!-- Mirrored from chellestudio.fr/charactercustom/ by HTTrack Website Copier/3.x [XR&CO'2014], Sat, 22 Sep 2018 11:55:54 GMT -->
+<head>
+        <meta charset="utf-8">
+        <meta name="copyright">
+        <script
+        src="../../code.jquery.com/jquery-3.3.1.min.js"
+        integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8="
+        crossorigin="anonymous"></script>
+          <!-- Compiled and minified CSS -->
+    <link rel="stylesheet" href="../../cdnjs.cloudflare.com/ajax/libs/materialize/0.100.2/css/materialize.min.css">
+  
+    <!-- Compiled and minified JavaScript -->
+    <script src="../../cdnjs.cloudflare.com/ajax/libs/materialize/0.100.2/js/materialize.min.js"></script>
+            
+        <script src="dist/snap.svg-min.js"></script>
+        <script src="src/jscolor.js"></script>
+        
+    </head>
+  
+<body style="background-color:#BEE6FC">
+    <div class="col s12 center">
+        <svg id="svg"  width="700px" height="700px" ></svg>
+    </div>
+    <div class="col s12 center">
+	<button class="btn jscolor {valueElement:'chosen-value', onFineChange:'setColorVetements1(this)'}">
+		Pick Clothes 1 Color
+    </button>
+    <button class="btn jscolor {valueElement:'chosen-value', onFineChange:'setColorVetements2(this)'}">
+            Pick Clothes 2 Color
+    </button>
+    <button class="btn black" onClick="changeNose()"> Change Nose</button>
+    </div>
+</body>
+
+<script>
+
+        var s1 = Snap("#svg");
+        var drawingZone = "#svg";
+        var character;
+        var vetements1;
+        var vetements2;
+        var head;
+        var chest;
+        var glasses;
+        var nose;
+        Snap.load("character.svg", function(f) {
+            var character = f;
+            s1.append(character);
+          
+            main();
+        });
+
+        function initialization(zone){
+            // When a  svg file is saved, the hidden layers get the display attribute. <object display="none"  style=""></object>
+            // But when you try to unveil of those layers, you do : element.attr({'display':''}) and it adds display:'' in the style attribute.
+            // It doesn't change anything because the attribute still exists. 
+            // That's why we need to manually change the attribute display into a css property.
+            $("[display='none'").each(function(element){
+                $(this).removeAttr("display").hide();
+            });
+
+
+
+        }
+        function respire(objet){
+            var temps = 500;
+            amplitude = 5;
+            var firstCallback = function(){
+                
+            }
+            var posstart = objet.attr('cy');
+            objet.animate({cy: posstart+amplitude},temps, mina.linear, function(){
+                
+                objet.animate({cy: posstart-2*amplitude},temps, mina.linear, function(){
+                    setTimeout(function(){
+                    objet.animate({cy: posstart},temps, function(){});
+                                
+                //do what you need here
+                    }, 100);
+            });
+
+             
+            });
+            setTimeout(function() {
+                respire(objet);
+  //your code to be executed after 1 second
+            }, 4*temps);
+
+        };
+        function dessemble(){
+            
+        }
+
+        function main() {
+            initialization(drawingZone);
+            character = Snap.select("#character");
+            head = character.select("#Head");
+            chest = character.select("#Chest");
+            glasses = head.select("#Glasses");
+            nose = head.select("#Nose");
+            vetements1 = character.selectAll("[fill='#61265E']");
+            vetements2 = character.selectAll("[fill='#008790']");
+            glasses
+
+
+            respire(chest.select("circle"));
+            console.log(chest);
+           
+            
+        };
+
+        
+
+
+        function setColorVetements1(picker) {
+            vetements1.attr({fill:"#"+picker.toString()});
+        }
+        
+        function setColorVetements2(picker) {
+            vetements2.attr({fill:"#"+picker.toString()});
+        }
+        function changeNose(){
+            if (nose.select("#b").attr('display') == 'none'){
+                nose.select("#a").attr({'display': 'none'});
+                nose.select("#b").attr({'display': ''});
+            }else{
+                nose.select("#b").attr({'display': 'none'});
+                nose.select("#a").attr({'display': ''});
+            }
+            
+            
+        }
+        </script>
+            
+
+
+<!-- Mirrored from chellestudio.fr/charactercustom/ by HTTrack Website Copier/3.x [XR&CO'2014], Sat, 22 Sep 2018 11:56:00 GMT -->
+</html>
+        
