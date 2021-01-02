@@ -12,7 +12,6 @@
 	<!-- CSS  -->
 	<link href="min/plugin-min.css" type="text/css" rel="stylesheet">
 	<link href="css/style.css" type="text/css" rel="stylesheet">
-
 	<link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
 </head>
 
@@ -81,7 +80,7 @@
 			</h1>
 		</div>
 		<div id="divphotodeprofil" class="center-align s12 col" style="z-index:1000;">
-			<img id="photodeprofil" src="img/propic4.png" alt="George Joseph" class="" style="">
+			<img id="photodeprofil" src="img/1.png" alt="George Joseph" class="" style="">
 		</div>
 	</div>
 
@@ -132,8 +131,6 @@
 	<div class="section scrollspy" id="work">
 		<div class="container">
 			<h2 class="header text_b" style="text-align: center;">My work </h2>
-
-
 			<div class="row">
 				<div class="col s12 m4 l4">
 					<div class="card hoverable">
@@ -283,8 +280,8 @@
 								<i class="mdi-navigation-more-vert right"></i>
 							</span>
 							<p>
-								<a target="_blank"
-									href="https://georgejoseph1994.github.io/OmanaPaulsCatering/">Visit the project</a>
+								<a target="_blank" href="https://georgejoseph1994.github.io/OmanaPaulsCatering/">Visit
+									the project</a>
 							</p>
 						</div>
 						<div class="card-reveal">
@@ -360,7 +357,6 @@
 			</div>
 			<div class="footer-copyright default_color">
 				<div class="container">
-
 				</div>
 			</div>
 		</footer>
@@ -375,67 +371,51 @@
 			var $menuActif = 0;
 			var $menufixedleft = 0;
 			var $startsize = 0;
+
 			function menu($title) {
 				$("#menu-fixed").hide();
 
 				if ($menufixedleft == 0) {
 					$("#menu-fixed").removeClass("menu-fixed-right").addClass("menu-fixed-left").html("<h2>" + $title + "</h2>");
-
-
 				} else {
 					$("#menu-fixed").removeClass("menu-fixed-left").addClass("menu-fixed-right").html("<h2>" + $title + "</h2>");
-
-
 				}
 				$("#menu-fixed").hide().fadeIn(300);
 				$menufixedleft = 1 - $menufixedleft;
-
 			}
-			function pdpScroll() {
 
+			function pdpScroll() {
 				$startsize = $('#photodeprofil').height();
 				$("#main-nav").fadeOut(1000);
-
 				$('#photodeprofil').css("position", "fixed").css("margin", "0 auto").css("left", "0").css("right", "0").css("top", "10px");
 				$("#photodeprofil").animate({
 					width: "100px",
 					height: "100px"
 				}, {
-						complete: function () {
-
-						}
-					});
-
-
-
-
+					complete: function () {
+					}
+				});
 			}
-			function pdpScrollInverse() {
 
+			function pdpScrollInverse() {
 				$("#main-nav").fadeIn(1000);
 				$("#menu-fixed").fadeOut(200);
 				$('#photodeprofil').css("position", "relative").css("left", "-50%").css("margin", "").css("right", "").css("top", "");
-
-
 				$("#photodeprofil").animate({
 					width: $startsize + "px",
 					height: $startsize + "px",
 				}, {
-						duration: 500,
-						specialEasing: {
-							width: "linear",
-							height: "linear",
-						}, complete: function () {
-							if ($menuActif == 1) {
-								$menuActif = 0;
-								$("#menu-fixed").fadeOut(200);
-							}
+					duration: 500,
+					specialEasing: {
+						width: "linear",
+						height: "linear",
+					}, complete: function () {
+						if ($menuActif == 1) {
+							$menuActif = 0;
+							$("#menu-fixed").fadeOut(200);
 						}
-					});
-
-
-
-
+					}
+				});
 			}
 			$(window).scroll(function () {
 				var hT1 = $('#intro').offset().top,
@@ -465,8 +445,6 @@
 
 				}
 				else if (wS > (hT1 - 0.5 * wH) && wS < (hT3 - 0.5 * wH) && wS < (hT2 - 0.5 * wH) && $scrollLaunched != 1) {
-
-
 					$scrollLaunched = 1;
 					menu("What I can do ");
 					if ($menuActif == 0) {
@@ -474,11 +452,9 @@
 						$menuActif = 1;
 					}
 				} else if (wS < (hT1 - 0.5 * wH) && $scrollLaunched != 0) {
-
 					$scrollLaunched = 0;
 					pdpScrollInverse();
 				}
-
 			});
 
 		</script>
